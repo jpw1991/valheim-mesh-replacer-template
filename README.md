@@ -66,13 +66,18 @@ To use the scripts, find and edit the `rename_template.sh` if you're on Linux, o
 
 The bundle is a Unity asset bundle file which will store your replacement mesh (the 3d model) and replacement material (textures) inside it. A material can be considered as a collection of different textures that constitute the painting of the mesh & its appearance in-game.
 
-I have an empty Unity project that's set up correctly for you in the template already. It also already has the Demolisher Sword mesh and material in there so you can inspect it if need be. Open Unity and then choose the add existing project option and choose the `MyModUnity` or equivalent folder. If it wants to convert the project version or whatever, let it. This is a near empty project and converting can't harm anything.
+### 4.1 Opening the Unity Project
 
-### 4.1 Adding your FBX
+I have an empty Unity project that's set up correctly for you in the template already. It also already has the Demolisher Sword mesh and material in there so you can inspect it if need be.
+
+1. Open Unity Hub and then choose the add existing project option: ![](img/unity_add.jpg) 
+2. Then choose the `MyModUnity` or equivalent folder. If it wants to convert the project version or whatever, let it. This is a near empty project and converting can't harm anything: ![](img/unity_add_2.jpg) 
+
+### 4.2 Adding your FBX
 
 Drag and drop or copy your FBX file into the project.
 
-### 4.2 Examining the FBX
+### 4.3 Examining the FBX
 
 The FBX file format is something Unity uses and it's like a package that can contain all kinds of things. Typically it contains at least a mesh and a material. For the scope of our endeavour, that's all we care about. If you look at the FBX in Unity you will see the material and mesh inside it:
 
@@ -84,11 +89,11 @@ We want to create copies of these things. Do to that, simply select the material
 
 These copies exist on their own separately from the FBX file and can be freely modified. You may wish to also rename them. For this guide I'm renaming them to `ReplacerMesh` and `ReplacerMaterial`.
 
-### 4.3 Setting up your material
+### 4.4 Setting up your material
 
 Depending on what's inside the FBX to begin with, you may not need to do this. But check that the material has its slots appropriately filled by assigning the textures to the appropriate slots. There is no one way to do this, as it depends on what textures are available for your model. But at a minimum, there is probably an albedo (the base color) and a normal map.
 
-### 4.4 Assigning the asset bundle
+### 4.5 Assigning the asset bundle
 
 Click your material and assign it to a new asset bundle. It can be named anything you want, but an appropriate name might be something like the name of your mod with bundle on the end. Bundles must be all lower case. For this demo, I'm just gonna call it `template`. Make sure you've assigned both the mesh and the material to this asset bundle. You can check my examining them:
 
@@ -96,7 +101,7 @@ Mesh | Material
 --- | ---
 ![](img/mesh.jpg) | ![](img/material.jpg)
 
-### 4.5 Building the asset bundle
+### 4.6 Building the asset bundle
 
 At the top of the Unity window, click Windows -> Asset Bundle Browser. This will then open and you can check that everything that should be inside your bundle is inside your bundle. There should be the mesh, the material, and probably textures (these are automatically dragged in as dependencies of the material):
 
@@ -106,7 +111,7 @@ Then pop over to build and select the right settings for your system (eg. Window
 
 ![](img/assetbundles_2.jpg)
 
-### 4.6 Finished
+### 4.7 Finished
 
 Assuming there are no errors, which there usually won't be, you'll have now built the asset bundle. It will be needed later.
 
