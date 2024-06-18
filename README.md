@@ -60,7 +60,17 @@ Replace the `your-repository-cloning-url-here` with the cloning URL of your repo
 
 After cloning, the repository will be identical to the template. It needs to be renamed to whatever you wish your mod to be. I have prepared two separate scripts to assist with this purpose, but you may also do it yourself by hand if you prefer.
 
-To use the scripts, find and edit the `rename_template.sh` if you're on Linux, otherwise edit the `RenameTemplate.ps1` if you're on windows. Change the parts of the script which have different versions of `MyMod` to be whatever name you want your mod to be and execute the script.
+### a) Windows
+
+Find and edit the `RenameTemplate.ps1` file and change the `MyMod` parts to be whatever name you want to use for your mod.
+
+Then execute the script by right clicking and clicking run with powershell. A console box will probably flash on your screen, and then you will notice that the folders and files have been renamed.
+
+**Attention:** By default, executing scripts is disabled on Windows. To fix this, you can run `Set-ExecutionPolicy RemoteSigned` in a powershell as administrator.
+
+### b) Linux
+
+Find and edit the `rename_template.sh` file and change the parts of the script which have different versions of `MyMod` to be whatever name you want your mod to be and execute the script.
 
 ## 4. Creating your bundle
 
@@ -177,3 +187,37 @@ With the changes we just made, you can now compile again and your mod is ready t
 ## 6. Testing
 
 Go and take your DLL file from the build folder. It will be something like `YourMod/bin/net48/YourMod.dll` and chuck it in your BepInEx folder, along with the asset bundle. They should be side by side. Start the game and everything should work. 
+
+## 7. Packaging
+
+Thunderstore has a standardized package format and rejects anything that doesn't conform to it. You can read more about it [here](https://thunderstore.io/c/valheim/create/docs/), but I will explain the basics:
+
+```
+Package
+├── icon.png
+├── manifest.json
+├── plugins
+│   ├── assetbundle
+│   └── mod.dll
+└── README.md
+```
+
+### 7.1 Copy the mod files into Package/plugins
+
+Inside the template we've been working on, you'll see a `Package` folder. This is the Thunderstore package folder. After building your asset bundle and DLL, copy these inside the plugins folder.
+
+### 7.2 Package README
+
+A README.md file is required. A demo one is provided in the template. Modify it as needed.
+
+### 7.3 manifest.json
+
+The `manifest.json` contains all the info that the Thunderstore cares about. Every time you make changes to the mod and wish to update it, you need to increase the version within the manifest otherwise Thunderstore will just reject it.
+
+[Semantic Versioning](https://semver.org/) is a whole topic of its own. For small changes, all you need to do is increase the number on the end eg. `1.0.0` -> `1.0.1`.
+
+Versions that are less than `1.0.0` (like `0.0.1`) are typically what you use while your mod is unfinished. Your first release will be version `1.0.0`.
+
+### 7.4 Zipping & Uploading
+
+Zip the contents of the `Package` folder and then upload it to the Thunderstore and you're done.
